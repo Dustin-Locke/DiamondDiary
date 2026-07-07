@@ -15,17 +15,17 @@ DiamondDiary is a Spring Boot backend application designed to manage softball pl
 - Spring Security configuration with stateless authentication
 
 ---
-
-## Tech Stack
-
-- Java 17
-- Spring Boot
-- Spring Security
-- Spring Data JPA
-- PostgreSQL
-- JWT (JSON Web Tokens)
-- Swagger / OpenAPI (springdoc)
-- Maven
+> [!IMPORTANT]
+> ## Tech Stack
+>
+> - Java 17
+> - Spring Boot
+> - Spring Security
+> - Spring Data JPA
+> - PostgreSQL
+> - JWT (JSON Web Tokens)
+> - Swagger / OpenAPI (springdoc)
+> - Maven
 
 ---
 
@@ -85,6 +85,7 @@ http://localhost:8080/swagger-ui/index.html
 
 ---
 
+> [!IMPORTANT]
 > ## Setup Instructions
 >
 > ### 1. Clone the repository
