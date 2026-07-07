@@ -4,6 +4,7 @@ import locke.dustin.diamonddiary.component.UserMapper;
 import locke.dustin.diamonddiary.dto.user.*;
 import locke.dustin.diamonddiary.entity.User;
 import locke.dustin.diamonddiary.repository.UserRepository;
+import locke.dustin.diamonddiary.util.exception.UserAlreadyExistsException;
 import locke.dustin.diamonddiary.util.exception.UserNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -15,7 +16,7 @@ import java.util.*;
 @RequiredArgsConstructor
 public class UserService {
 
-    private final UserRepository repo;
+    private final UserRepository  repo;
     private final PasswordEncoder passwordEncoder;
 
 
@@ -27,23 +28,11 @@ public class UserService {
                    .orElseThrow( ( ) -> new UserNotFoundException( id ) );
     }
 
-    public Boolean existsById ( UUID id ) {
-
-        if ( repo.existsById( id ) ) {
-            return true;
-        } else {
-            throw new UserNotFoundException( id );
-        }
-    }
 
     public User findByEmail ( String email ) {
 
-        if ( !repo.existsByEmail( email ) ) {
-            throw new IllegalArgumentException(
-                    "Email address not found." );
-        }
-
-        return new User( email );
+        return repo.findByEmail( email )
+                   .orElseThrow( ( ) -> new UserNotFoundException( email ) );
     }
 
     public void deleteById ( UUID id ) {
@@ -55,9 +44,7 @@ public class UserService {
     public UserResponse create ( CreateUserRequest request ) {
 
         if ( repo.existsByEmail( request.email( ) ) ) {
-            throw new IllegalArgumentException(
-                    "An account with email '" + request.email( ) +
-                    "' already exists." );
+            throw new UserAlreadyExistsException( request );
         }
 
         User user = UserMapper.toEntity( request );

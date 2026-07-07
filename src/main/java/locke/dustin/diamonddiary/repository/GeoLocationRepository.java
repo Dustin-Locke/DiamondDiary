@@ -14,6 +14,16 @@ import java.util.*;
 public interface GeoLocationRepository
         extends JpaRepository< GeoLocation, UUID > {
 
+    boolean existsByNameAndAddress_StreetNumberAndAddress_StreetName (
+            String name,
+            String streetNumber,
+            String streetName );
+
+    Optional< GeoLocation > findByNameAndAddress_StreetNumberAndAddress_StreetName(
+            String name,
+            String streetNumber,
+            String streetName );
+
     Optional< GeoLocation > findByLatitudeAndLongitude (
             Double latitude,
             Double longitude );

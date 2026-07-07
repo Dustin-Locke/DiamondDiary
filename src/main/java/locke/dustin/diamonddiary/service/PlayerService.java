@@ -23,17 +23,7 @@ public class PlayerService {
                          .orElseThrow( ( ) -> new PlayerNotFoundException( id ) );
     }
 
-    public Boolean existsById ( UUID id ) {
-
-        if ( playerRepo.existsById( id ) ) {
-            return true;
-        } else {
-            throw new PlayerNotFoundException( id );
-        }
-    }
-
     public PlayerResponse create (
-            UUID userId,
             CreatePlayerRequest request ) {
 
         if ( playerRepo.existsByFirstNameAndLastNameAndBirthDate(
@@ -43,6 +33,20 @@ public class PlayerService {
         ) { throw new PlayerAlreadyExistsException( request ); }
 
         Player player = PlayerMapper.toEntity( request );
+
+        playerRepo.save( player );
+
+        return PlayerMapper.toResponse( player );
+    }
+
+    public PlayerResponse create (
+            Player player ) {
+
+        if ( playerRepo.existsByFirstNameAndLastNameAndBirthDate(
+                player.getFirstName( ),
+                player.getLastName( ),
+                player.getBirthDate( ) )
+        ) { throw new PlayerAlreadyExistsException( player ); }
 
         playerRepo.save( player );
 

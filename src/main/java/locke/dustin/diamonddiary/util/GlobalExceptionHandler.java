@@ -54,17 +54,6 @@ public class GlobalExceptionHandler {
                              .body( error );
     }
 
-    @ExceptionHandler(PasswordHashingException.class )
-    public ResponseEntity< ErrorResponse > handlePasswordHashing (
-            PasswordHashingException exception ) {
-
-        logger.info( exception.getMessage( ) );
-
-        ErrorResponse error = createErrorResponse( exception );
-
-        return ResponseEntity.status( HttpStatus.INTERNAL_SERVER_ERROR )
-                             .body( error );
-    }
 
     @ExceptionHandler(UserNotFoundException.class )
     public ResponseEntity< ErrorResponse > handleUserNotFoundException (
@@ -147,6 +136,66 @@ public class GlobalExceptionHandler {
         ErrorResponse error = createErrorResponse( exception );
 
         return ResponseEntity.status( HttpStatus.NOT_FOUND )
+                             .body( error );
+    }
+
+    @ExceptionHandler(CoordinatesNotValidException.class)
+    public ResponseEntity<ErrorResponse> handleInvalidCoordinates (
+            CoordinatesNotValidException exception ) {
+
+        logger.info( exception.getMessage( ) );
+
+        ErrorResponse error = createErrorResponse( exception );
+
+        return ResponseEntity.status( HttpStatus.BAD_REQUEST )
+                             .body( error );
+    }
+
+    @ExceptionHandler(AddressNotFoundException.class )
+    public ResponseEntity< ErrorResponse > handleAddressNotFound (
+            AddressNotFoundException exception ) {
+
+        logger.info( exception.getMessage( ) );
+
+        ErrorResponse error = createErrorResponse( exception );
+
+        return ResponseEntity.status( HttpStatus.NOT_FOUND )
+                             .body( error );
+    }
+
+    @ExceptionHandler(LocationAlreadyExistsException.class )
+    public ResponseEntity< ErrorResponse > handleGeoLocationAlreadyExistsException (
+            LocationAlreadyExistsException exception ) {
+
+        logger.info( exception.getMessage( ) );
+
+        ErrorResponse error = createErrorResponse( exception );
+
+        return ResponseEntity.status( HttpStatus.CONFLICT )
+                             .body( error );
+    }
+
+    @ExceptionHandler(GeocodingException.class)
+    public ResponseEntity<ErrorResponse> handleGeoCodingException (
+            GeocodingException exception ) {
+
+        logger.info( exception.getMessage( ) );
+
+        ErrorResponse error = createErrorResponse( exception );
+
+        return ResponseEntity.status( HttpStatus.BAD_REQUEST )
+                             .body( error );
+    }
+
+    @ExceptionHandler(UserAlreadyExistsException.class )
+    public ResponseEntity< ErrorResponse > handleUserAlreadyExistsException (
+            UserAlreadyExistsException exception ) {
+
+        logger.info( exception.getMessage( ) );
+
+        ErrorResponse error = createErrorResponse( exception );
+
+        return ResponseEntity.status( HttpStatus.CONFLICT )
                              .body( error );
     }
 

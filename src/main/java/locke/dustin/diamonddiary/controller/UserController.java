@@ -5,6 +5,7 @@ import locke.dustin.diamonddiary.auth.UserPrincipal;
 import locke.dustin.diamonddiary.auth.dto.PasswordUpdateRequest;
 import locke.dustin.diamonddiary.component.UserMapper;
 import locke.dustin.diamonddiary.dto.join.CreateUserPlayerRequest;
+import locke.dustin.diamonddiary.dto.join.UserPlayerResponse;
 import locke.dustin.diamonddiary.dto.player.PlayerResponse;
 import locke.dustin.diamonddiary.dto.user.*;
 import locke.dustin.diamonddiary.entity.User;
@@ -26,7 +27,6 @@ import java.util.stream.Collectors;
 public class UserController {
 
     private final UserService       userService;
-    private final PlayerService     playerService;
     private final UserPlayerService userPlayerService;
     private final AuthService       authService;
 
@@ -86,7 +86,7 @@ public class UserController {
     }
 
     @PostMapping("/me/add-player" )
-    public ResponseEntity< PlayerResponse > addPlayerToUser (
+    public ResponseEntity< UserPlayerResponse > addPlayerToUser (
             @AuthenticationPrincipal UserPrincipal user,
             @RequestParam UUID requestPlayerId ) {
 
@@ -97,11 +97,11 @@ public class UserController {
                         userId,
                         requestPlayerId );
 
-        PlayerResponse playerResponse =
+        UserPlayerResponse userPlayerResponse =
                 userPlayerService.addPlayerToUser( createUnionRequest );
 
         return ResponseEntity
-                .ok( playerResponse );
+                .ok( userPlayerResponse );
     }
 
     @DeleteMapping("/{email}" )

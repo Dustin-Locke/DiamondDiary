@@ -12,4 +12,13 @@ public class UserNotFoundException extends RuntimeException {
                 " not found."
              );
     }
+
+    public UserNotFoundException ( String email ) {
+
+        super(
+                "User with email " +
+                email +
+                " not found."
+             );
+    }
 }

@@ -25,8 +25,7 @@ public class GeoLocationController {
                                                             ) {
 
         return ResponseEntity.ok( geoLocationService.create(
-                geoLocationRequest,
-                geoLocationRequest.address( ) ) );
+                geoLocationRequest ) );
     }
 
     @DeleteMapping("/{id}" )
