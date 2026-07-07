@@ -85,29 +85,29 @@ http://localhost:8080/swagger-ui/index.html
 
 ---
 
-## Setup Instructions
-
-### 1. Clone the repository
-
-```bash
-git clone https://github.com/YOUR_USERNAME/DiamondDiary.git
-cd DiamondDiary
-```
-
-### 2. Set environment variables in IntelliJ
-
-```bash
-DB_USERNAME=your_db_user
-DB_PASSWORD=your_db_password
-JWT_SECRET=your_secret_key
-```
-
-### 3. Run the application 
-
-Navigate to /MiniLink and run:
-```bash
-mvn spring-boot:run
-```
+> ## Setup Instructions
+>
+> ### 1. Clone the repository
+>
+> ```bash
+> git clone https://github.com/YOUR_USERNAME/DiamondDiary.git
+> cd DiamondDiary
+> ```
+>
+> ### 2. Set environment variables in IntelliJ
+>
+> ```bash
+> DB_USERNAME=your_db_user
+> DB_PASSWORD=your_db_password
+> JWT_SECRET=your_secret_key
+> ```
+>
+> ### 3. Run the application 
+>
+> Navigate to /DiamondDiary and run:
+> ```bash
+> mvn spring-boot:run
+> ```
 
 ## Testing
 
