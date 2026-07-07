@@ -109,12 +109,36 @@ Navigate to /MiniLink and run:
 mvn spring-boot:run
 ```
 
+## Testing
+
+Unit tests have been added across the service layer to verify business logic, dependency interactions, and expected failure scenarios.
+
+### Current service layer test coverage includes:
+
+#### GeoLocationService
+- Finding locations by ID
+- Updating location names
+- Updating addresses and recalculating coordinates
+- Handling missing locations with custom exceptions
+#### MapLinkService
+- Generating map links for supported mapping services
+#### PlayerService
+- Player creation, retrieval, updates, and exception handling
+#### UserPlayerService
+- User/player relationship management
+- Validation of duplicate relationships and missing entities
+#### UserService
+- User creation and retrieval
+- Validation and exception handling
+
+Tests use Mockito to isolate service behavior by mocking repository, mapper, and external service dependencies.
+
 ## Future Improvements
 
 - Refresh token implementation
 - Role-based authorization (User / Coach / Admin)
 - Improved player statistics tracking
-- Unit + integration test coverage
+- More unit + integration test coverage
 - Flyway database migrations
 - Docker support
 
